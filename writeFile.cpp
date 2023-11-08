@@ -6,13 +6,75 @@
 #include <string>
 #include <vector>
 
+struct Test
+{
+    std::string date = "";
+    std::string time = "";
+    std::string precipitation = "";
+    std::string temperature = "";
+    std::string humidity = "";
+    std::string windSpeed = "";
+};
+
+void ChoosePluseStringOfTest(char a, struct Test &testStruct, int count)
+{
+    switch (count)
+    {
+    case 0:
+        testStruct.date.push_back(a);
+        break;
+    case 1:
+        testStruct.time.push_back(a);
+        break;
+    case 2:
+        testStruct.precipitation.push_back(a);
+        break;
+    case 3:
+        testStruct.temperature.push_back(a);
+        break;
+    case 4:
+        testStruct.humidity.push_back(a);
+        break;
+    case 5:
+        testStruct.windSpeed.push_back(a);
+        break;
+    }
+}
+
+void FillstructTest(int number, struct Test &testStruct, std::vector <std::string> &test)
+{
+    int count = 0;
+    for (auto& a : test[number])
+    {
+        if (a == ' ' || a == '\t')
+        {
+            count++;
+        }
+        else
+        {
+            ChoosePluseStringOfTest(a, testStruct, count);
+        }
+    }
+}
+
+void PrintStructTest(struct Test &testStruct)
+{
+    std::cout << testStruct.date << '\t';
+    std::cout << testStruct.time << '\t';
+    std::cout << testStruct.precipitation << '\t';
+    std::cout << testStruct.temperature << '\t';
+    std::cout << testStruct.humidity << '\t';
+    std::cout << testStruct.windSpeed << '\n';
+}
+
 int main()
 {
-    
+    std::vector <struct Test> testStruct;
+    struct Test testingStruct;
     std::ifstream in;
     std::ofstream out;
     out.open("result.txt");
-    std::string nameFile = "test.txt";
+    std::string nameFile = "twofile.txt";
     in.open(nameFile);
     std::string testString;
     std::vector <std::string> test;
@@ -23,16 +85,13 @@ int main()
         {
             getline(in, testString);
             test.push_back(testString);
-//            out << testString;
-            (i+1) % 3 == 0 ? out << test[i] << '\n': out << test[i] << '\t';
-            printf("%s", test[i]);
+            testStruct.push_back(testingStruct);
+            FillstructTest(i, testStruct[i], test);
+            PrintStructTest(testStruct[i]);
             i = i + 1;
         }
-        for (auto& a : test)
-        {
-            std::cout << a;
-//            out << a << '\t';
-        }
+        
+
     }
     else
     {
