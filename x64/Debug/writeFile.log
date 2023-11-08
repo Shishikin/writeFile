@@ -1,0 +1,7 @@
+﻿  writeFile.cpp
+C:\visial studio\writeFile\writeFile\writeFile.cpp(28,20): warning C4477: "printf": в строке форматирования "%s" требуется аргумент типа "char *", но вариативный аргумент "1" имеет тип "_Ty"
+          with
+          [
+              _Ty=std::string
+          ]
+  writeFile.vcxproj -> C:\visial studio\writeFile\x64\Debug\writeFile.exe
